@@ -511,12 +511,13 @@ namespace ValvePak
 		/// <summary>
 		/// Creates an entry with the directory, file and type names split from the normalized path.
 		/// </summary>
-		private static PackageEntry CreateEntry(string filePath, string paramName)
+		private PackageEntry CreateEntry(string filePath, string paramName)
 		{
 			var (directoryName, fileName, typeName) = ParseEntryPath(filePath, paramName);
 
 			return new PackageEntry
 			{
+				Package = this,
 				DirectoryName = directoryName,
 				FileName = fileName,
 				TypeName = typeName,

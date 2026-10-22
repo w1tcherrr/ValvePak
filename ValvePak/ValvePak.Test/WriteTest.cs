@@ -148,6 +148,26 @@ namespace ValvePak.Test
 		}
 
 		[Test]
+		public async Task EntriesPointToTheirPackage()
+		{
+			using var output = new MemoryStream();
+			using var package = new Package();
+			var added = package.AddFile("test.txt", []);
+			package.Write(output);
+			output.Position = 0;
+
+			using var readBack = new Package();
+			readBack.SetFileName("test.vpk");
+			readBack.Read(output);
+
+			using (Assert.Multiple())
+			{
+				await Assert.That(added.Package).IsSameReferenceAs(package);
+				await Assert.That(readBack.FindEntry("test.txt")!.Package).IsSameReferenceAs(readBack);
+			}
+		}
+
+		[Test]
 		public async Task NormalizesSlashes()
 		{
 			using var package = new Package();

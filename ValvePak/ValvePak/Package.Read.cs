@@ -394,6 +394,7 @@ namespace ValvePak
 
 						var entry = new PackageEntry
 						{
+							Package = this,
 							FileName = fileName,
 							DirectoryName = directoryName,
 							TypeName = typeName,

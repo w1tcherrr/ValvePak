@@ -6,6 +6,11 @@ namespace ValvePak
 	public class PackageEntry
 	{
 		/// <summary>
+		/// Gets the package this entry belongs to, or <see langword="null"/> for an entry created outside of a package.
+		/// </summary>
+		public Package? Package { get; init; }
+
+		/// <summary>
 		/// Gets or sets file name of this entry.
 		/// </summary>
 		/// <remarks>
